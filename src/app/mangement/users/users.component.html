@@ -1,0 +1,112 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#"><strong>Mangement</strong></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+<div class="sidenav">
+  <a href="#about">Dashboard</a>
+  <a href="#services">Users</a>
+
+</div>
+<div class="postion">
+
+  <mat-card style="margin-left: 203px;margin-right: 40px;margin-top: 30px; background-color: rgb(148, 152, 165);">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h3> <strong> List of Users</strong></h3>
+        </div>
+        <div class="col">
+
+        </div>
+        <div class="col">
+          <button style="color: white;margin-left: 290px;" (click)="openDialog()">
+            <mat-icon style="font-size:27px; ">
+              add_box</mat-icon>
+          </button>
+
+        </div>
+      </div>
+    </div>
+
+  </mat-card>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="margin-left: 240px; margin-top: 30px;">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let user"> {{user.position}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let user"> {{user.name}} </td>
+    </ng-container>
+
+    <!--  age Column -->
+    <ng-container matColumnDef=" age">
+      <th mat-header-cell *matHeaderCellDef> Age </th>
+      <td mat-cell *matCellDef="let user"> {{user. age}} </td>
+    </ng-container>
+
+    <!-- title Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let user"> {{user.title}} </td>
+    </ng-container>
+
+    <!-- activity Column -->
+    <ng-container matColumnDef="activity">
+      <th mat-header-cell *matHeaderCellDef> Activity </th>
+      <td mat-cell *matCellDef="let user"> {{user.activity}} </td>
+    </ng-container>
+
+    <!--Action-->
+    <ng-container matColumnDef="action">
+
+      <th mat-header-cell *matHeaderCellDef> Action <button mat-icon-button (click)="removeAll()"
+          matTooltip="Remove all">
+          <mat-icon>clear_all</mat-icon>
+        </button>
+        <button mat-icon-button (click)="reset()" matTooltip="Reset">
+          <mat-icon>autorenew</mat-icon>
+        </button>
+
+
+      </th>
+      <td mat-cell *matCellDef="let user; let i = index;">
+        <button mat-icon-button (click)="openDialogView('View',user)" matTooltip="View this user">
+          <mat-icon color="primary">visibility</mat-icon>
+        </button>
+        <button mat-icon-button (click)="openDialogUpdate('Update',user)" matTooltip="Update this user">
+          <mat-icon class="color2">create</mat-icon>
+        </button>
+        <button mat-icon-button (click)="removeAt(i)" matTooltip="Remove this user">
+          <mat-icon class="color1" color="accent">delete_sweep</mat-icon>
+        </button>
+
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <div class="page" style="    margin-right: 29px;
+    margin-left: 240px;">
+    <mat-paginator style="margin-right: 115px;" [length]="100" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+  </div>
+</div>
